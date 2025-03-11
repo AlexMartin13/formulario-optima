@@ -5,26 +5,28 @@
     <title>Formulario de Contacto</title>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
-        /* Estilos adaptados a optimaquantum.com */
+        /* Estilos adaptados a la captura de optimaquantum.com */
         body {
-            font-family: 'Roboto', Arial, sans-serif; /* Fuente similar a la usada en la página */
+            font-family: 'Montserrat', Arial, sans-serif; /* Fuente similar a la página */
             max-width: 500px;
-            margin: 20px auto;
-            background-color: #1A1A1A; /* Fondo oscuro como en la página */
-            color: #FFFFFF; /* Texto blanco */
+            margin: 40px auto;
+            background: linear-gradient(180deg, #0A1A44 0%, #0F2356 100%); /* Degradado azul oscuro */
+            color: #FFFFFF;
+            padding: 20px;
         }
         h2 {
-            font-size: 24px;
+            font-size: 28px;
             font-weight: 700;
-            color: #F5A623; /* Naranja característico */
-            text-align: center;
+            color: #FFFFFF;
+            text-align: left;
             margin-bottom: 20px;
+            text-transform: uppercase; /* Similar al "Sobre nosotros" */
         }
         form {
-            background-color: #2A2A2A; /* Gris oscuro para el formulario */
-            padding: 20px;
-            border-radius: 10px; /* Bordes redondeados */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+            background-color: #1A2E77; /* Azul de las tarjetas */
+            padding: 25px;
+            border-radius: 15px; /* Bordes redondeados como las tarjetas */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra suave */
         }
         label {
             display: block;
@@ -37,28 +39,27 @@
             width: 100%;
             padding: 10px;
             margin-top: 5px;
-            background-color: #3A3A3A; /* Fondo de los campos */
-            border: 1px solid #F5A623; /* Borde naranja */
-            border-radius: 5px;
-            color: #FFFFFF; /* Texto blanco */
+            background-color: #FFFFFF; /* Fondo blanco para los campos */
+            border: none;
+            border-radius: 8px;
+            color: #0A1A44; /* Texto oscuro para contraste */
             font-size: 14px;
-            box-sizing: border-box; /* Incluye padding en el ancho */
+            box-sizing: border-box;
         }
         input:focus, textarea:focus {
             outline: none;
-            border-color: #FFFFFF; /* Resalta en blanco al enfocar */
-            box-shadow: 0 0 5px rgba(245, 166, 35, 0.5); /* Efecto naranja suave */
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Resalta al enfocar */
         }
         textarea {
-            resize: vertical; /* Permitir redimensionar solo verticalmente */
-            min-height: 100px;
+            resize: vertical;
+            min-height: 120px;
         }
         button {
-            background-color: #F5A623; /* Botón naranja */
-            color: #1A1A1A; /* Texto oscuro para contraste */
+            background-color: #FFFFFF; /* Botón blanco como el texto principal */
+            color: #0A1A44; /* Texto azul oscuro */
             padding: 12px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             font-size: 16px;
             font-weight: 600;
             cursor: pointer;
@@ -67,7 +68,7 @@
             transition: background-color 0.3s ease;
         }
         button:hover {
-            background-color: #D88F1F; /* Naranja más oscuro al pasar el ratón */
+            background-color: #E6E6E6; /* Blanco más oscuro al hover */
         }
     </style>
 </head>
@@ -89,7 +90,7 @@
     <script>
         // Inicializar EmailJS con tu Public Key
         (function(){
-            emailjs.init("BIdOmAzUxt9kKhrcL"); // Tu Public Key
+            emailjs.init("BIdOmAzUxt9kKhrcL");
         })();
 
         // Manejar el envío del formulario
