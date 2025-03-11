@@ -3,19 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulario de Contacto</title>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        /* Opcional: un poco de estilo para que se vea bien */
+        body { font-family: Arial, sans-serif; max-width: 500px; margin: 20px auto; }
+        label { display: block; margin-top: 10px; }
+        input, textarea { width: 100%; padding: 8px; margin-top: 5px; }
+        button { background-color: #4CAF50; color: white; padding: 10px 15px; border: none; cursor: pointer; margin-top: 10px; }
+        button:hover { background-color: #45a049; }
+    </style>
 </head>
 <body>
-    <form method="POST">
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br><br>
+    <h2>Formulario de Contacto</h2>
+    <form id="contactoForm">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
 
-        <label for="nombre">Nombre:</label><br>
-        <input type="text" id="nombre" name="nombre" required><br><br>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
 
-        <label for="caso">Cuéntanos tu caso:</label><br>
-        <textarea id="caso" name="caso" rows="5" required></textarea><br><br>
+        <label for="caso">Cuéntanos tu caso:</label>
+        <textarea id="caso" name="caso" rows="5" required></textarea>
 
-        <input type="submit" value="Enviar">
+        <button type="submit">Enviar</button>
     </form>
+
+    <script>
+        // Inicializar EmailJS con tu Public Key
+        (function(){
+            emailjs.init("TU_PUBLIC_KEY"); // Reemplaza con tu Public Key de EmailJS
+        })();
+
+        // Manejar el envío del formulario
+        document.getElementById("contactoForm").addEventListener("submit", function(event) {
+            event.preventDefault(); // Evitar que la página se recargue
+
+            // Obtener los valores del formulario
+            const email = document.getElementById("email").value;
+            const nombre = document.getElementById("nombre").value;
+            const caso = document.getElementById("caso").value;
+
+            // Configurar los parámetros del correo
+            const templateParams = {
+                from_email: email,
+                from_nombre: nombre,
+                mensaje: caso,
+                to_email: "tuemail@ejemplo.com" // Reemplaza con tu correo
+            };
+
+            // Enviar el correo con EmailJS
+            emailjs.send("TU_SERVICE_ID", "TU_TEMPLATE_ID", templateParams)
+                .then(function(response) {
+                    alert("¡Gracias, " + nombre + "! Tu mensaje ha sido enviado.");
+                    document.getElementById("contactoForm").reset(); // Limpiar el formulario
+                }, function(error) {
+                    alert("Hubo un error al enviar el mensaje. Intenta de nuevo.");
+                    console.error("Error:", error);
+                });
+        });
+    </script>
 </body>
 </html>
