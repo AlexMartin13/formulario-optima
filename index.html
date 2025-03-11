@@ -5,12 +5,70 @@
     <title>Formulario de Contacto</title>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
-        /* Opcional: un poco de estilo para que se vea bien */
-        body { font-family: Arial, sans-serif; max-width: 500px; margin: 20px auto; }
-        label { display: block; margin-top: 10px; }
-        input, textarea { width: 100%; padding: 8px; margin-top: 5px; }
-        button { background-color: #4CAF50; color: white; padding: 10px 15px; border: none; cursor: pointer; margin-top: 10px; }
-        button:hover { background-color: #45a049; }
+        /* Estilos adaptados a optimaquantum.com */
+        body {
+            font-family: 'Roboto', Arial, sans-serif; /* Fuente similar a la usada en la página */
+            max-width: 500px;
+            margin: 20px auto;
+            background-color: #1A1A1A; /* Fondo oscuro como en la página */
+            color: #FFFFFF; /* Texto blanco */
+        }
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #F5A623; /* Naranja característico */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        form {
+            background-color: #2A2A2A; /* Gris oscuro para el formulario */
+            padding: 20px;
+            border-radius: 10px; /* Bordes redondeados */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+        }
+        label {
+            display: block;
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: 500;
+            color: #FFFFFF;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            background-color: #3A3A3A; /* Fondo de los campos */
+            border: 1px solid #F5A623; /* Borde naranja */
+            border-radius: 5px;
+            color: #FFFFFF; /* Texto blanco */
+            font-size: 14px;
+            box-sizing: border-box; /* Incluye padding en el ancho */
+        }
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #FFFFFF; /* Resalta en blanco al enfocar */
+            box-shadow: 0 0 5px rgba(245, 166, 35, 0.5); /* Efecto naranja suave */
+        }
+        textarea {
+            resize: vertical; /* Permitir redimensionar solo verticalmente */
+            min-height: 100px;
+        }
+        button {
+            background-color: #F5A623; /* Botón naranja */
+            color: #1A1A1A; /* Texto oscuro para contraste */
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #D88F1F; /* Naranja más oscuro al pasar el ratón */
+        }
     </style>
 </head>
 <body>
@@ -31,31 +89,28 @@
     <script>
         // Inicializar EmailJS con tu Public Key
         (function(){
-            emailjs.init("BIdOmAzUxt9kKhrcL"); // Reemplaza con tu Public Key de EmailJS
+            emailjs.init("BIdOmAzUxt9kKhrcL"); // Tu Public Key
         })();
 
         // Manejar el envío del formulario
         document.getElementById("contactoForm").addEventListener("submit", function(event) {
-            event.preventDefault(); // Evitar que la página se recargue
+            event.preventDefault();
 
-            // Obtener los valores del formulario
             const email = document.getElementById("email").value;
             const nombre = document.getElementById("nombre").value;
             const caso = document.getElementById("caso").value;
 
-            // Configurar los parámetros del correo
             const templateParams = {
                 from_email: email,
                 from_nombre: nombre,
                 mensaje: caso,
-                to_email: "lalexl333@gmail.com" // Reemplaza con tu correo
+                to_email: "lalexl333@gmail.com"
             };
 
-            // Enviar el correo con EmailJS
             emailjs.send("service_n0mmy69", "template_m03j2yv", templateParams)
                 .then(function(response) {
                     alert("¡Gracias, " + nombre + "! Tu mensaje ha sido enviado.");
-                    document.getElementById("contactoForm").reset(); // Limpiar el formulario
+                    document.getElementById("contactoForm").reset();
                 }, function(error) {
                     alert("Hubo un error al enviar el mensaje. Intenta de nuevo.");
                     console.error("Error:", error);
